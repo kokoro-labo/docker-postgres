@@ -1,0 +1,84 @@
+version: '3'
+
+### PostgreSQL
+
+services:
+  postgres09:
+    build:
+        context: ./dockerfile
+        dockerfile: Dockerfile_postgres09
+    container_name: postgres09
+    image: db/postgres:09
+    user: postgres:postgres
+    volumes:
+      - ./volumes/09/data:/var/lib/postgresql/data
+      - ./volumes/09/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/09/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11009:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
+
+  postgres10:
+    build:
+        context: ./dockerfile
+        dockerfile: Dockerfile_postgres10
+    container_name: postgres10
+    image: db/postgres:10
+    user: postgres:postgres
+    volumes:
+      - ./volumes/10/data:/var/lib/postgresql/data
+      - ./volumes/10/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/10/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11010:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
+
+  postgres11:
+    build:
+        context: ./dockerfile
+        dockerfile: Dockerfile_postgres11
+    container_name: postgres11
+    image: db/postgres:11
+    volumes:
+      - ./volumes/11/data:/var/lib/postgresql/data
+      - ./volumes/11/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/11/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11011:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
+
+  postgres12:
+    build:
+        context: ./dockerfile
+        dockerfile: Dockerfile_postgres12
+    container_name: postgres12
+    image: db/postgres:12
+    user: postgres:postgres
+    volumes:
+      - ./volumes/12/data:/var/lib/postgresql/data
+      - ./volumes/12/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/12/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11012:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
+
