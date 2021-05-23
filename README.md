@@ -6,3 +6,4 @@
 * PostgreSQL:10
 * PostgreSQL:11
 * PostgreSQL:12
+* PostgreSQL:13

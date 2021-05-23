@@ -6,7 +6,7 @@ services:
   postgres09:
     build:
         context: ./dockerfile
-        dockerfile: Dockerfile_postgres09
+        dockerfile: postgres09.Dockerfile
     container_name: postgres09
     image: db/postgres:09
     user: postgres:postgres
@@ -26,7 +26,7 @@ services:
   postgres10:
     build:
         context: ./dockerfile
-        dockerfile: Dockerfile_postgres10
+        dockerfile: postgres10.Dockerfile
     container_name: postgres10
     image: db/postgres:10
     user: postgres:postgres
@@ -46,7 +46,7 @@ services:
   postgres11:
     build:
         context: ./dockerfile
-        dockerfile: Dockerfile_postgres11
+        dockerfile: postgres11.Dockerfile
     container_name: postgres11
     image: db/postgres:11
     volumes:
@@ -65,7 +65,7 @@ services:
   postgres12:
     build:
         context: ./dockerfile
-        dockerfile: Dockerfile_postgres12
+        dockerfile: postgres12.Dockerfile
     container_name: postgres12
     image: db/postgres:12
     user: postgres:postgres
@@ -79,6 +79,26 @@ services:
       - TZ=Asia/Tokyo
     ports:
       - "11012:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
+
+  postgres13:
+    build:
+        context: ./dockerfile
+        dockerfile: postgres13.Dockerfile
+    container_name: postgres13
+    image: db/postgres:13
+    user: postgres:postgres
+    volumes:
+      - ./volumes/13/data:/var/lib/postgresql/data
+      - ./volumes/13/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/13/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11013:5432"
     command: 'postgres -c config_file="/etc/postgresql.conf"'
     restart: unless-stopped
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-versions=(09 10 11 12)
+versions=(09 10 11 12 13)
 
 echo "\n>>> stop container..."
 docker-compose stop
