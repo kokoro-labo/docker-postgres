@@ -102,3 +102,22 @@ services:
     command: 'postgres -c config_file="/etc/postgresql.conf"'
     restart: unless-stopped
 
+  postgres14:
+    build:
+        context: ./dockerfile
+        dockerfile: postgres14.Dockerfile
+    container_name: postgres14
+    image: db/postgres:14
+    user: postgres:postgres
+    volumes:
+      - ./volumes/14/data:/var/lib/postgresql/data
+      - ./volumes/14/entrypoint:/docker-entrypoint-initdb.d
+      - ./volumes/14/config/postgresql.conf:/etc/postgresql.conf
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "11014:5432"
+    command: 'postgres -c config_file="/etc/postgresql.conf"'
+    restart: unless-stopped
